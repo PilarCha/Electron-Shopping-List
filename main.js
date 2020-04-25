@@ -82,3 +82,29 @@ const mainMenuTemplate = [
   ]
   }
 ]
+
+//if mac add empty object otherwise it will look wrong the file
+if(process.platform == 'darwin') {
+  mainMenuTemplate.unshift({});
+}
+//Add developer tools if not in production
+if(process.env.NODE_ENV !== 'production') {
+  mainMenuTemplate.push({
+    label: 'Developer Tools',
+    submenu: [
+      {
+        label: 'Toggle Devtools',
+        accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl + I',
+        //focusedwindow makes the devtools label menu show up on whatever focused window is used
+        click(item, focusedWindow) {
+          focusedWindow.toggleDevTools();
+        }
+
+      },
+      {
+        //this allows the shortcut for reload on the menu
+        role: 'reload'
+      }
+    ]
+  })
+}
