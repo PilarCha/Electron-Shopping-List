@@ -22,6 +22,11 @@
         ul.appendChild(li);
       });
 
+      //catch clear items
+      ipcRenderer.on('item:clear', function() {
+        ul.innerHTML = '';
+      });
+
     </script>
   </body>
 </html>

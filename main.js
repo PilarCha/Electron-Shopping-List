@@ -73,7 +73,11 @@ const mainMenuTemplate = [
         }
       },
       {
-        label: 'Clear Items'
+        //sending item :clear as it will clear all items no need to include one item
+        label: 'Clear Items',
+        click() {
+          mainWindow.webContents.send('item:clear');
+        }
       },
       {
         label:'Quit',
